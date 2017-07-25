@@ -1,4 +1,5 @@
 import React from 'react'
+import BugReportCard from './BugReportCard.js'
 
 var Chance = require('chance'),
     chance = new Chance();
@@ -15,6 +16,15 @@ class BugReportForm extends React.Component {
   
   changeBugDesc (event) {
     this.setState({description: event.target.value})
+  }
+  
+  deleteBug (id, event) {
+    let data = JSON.parse(localStorage.getItem('bugs'))
+    
+    let remainingBugs = data.filter((item) => {
+      return item.id !== id
+    })
+    localStorage.setItem('bugs', JSON.stringify(remainingBugs))
   }
   
   changeBugSeve (event) {
@@ -43,13 +53,16 @@ class BugReportForm extends React.Component {
     localStorage.setItem('bugs', JSON.stringify(bugs))
   }
   
+  itemBugs () {
+    return JSON.parse(localStorage.getItem('bugs'));
+  }
+  
   render () {
     return (
       <div>
         <h2 className="title">Add New Bug Report:</h2>
         <form action="" id="bugInputForm">
           <label className="label">Description</label>
-          <h1> {this.state.severity} </h1>
           <p className="control">
             <input className="input" type="text" id="description" 
             value={this.state.description} 
@@ -75,6 +88,9 @@ class BugReportForm extends React.Component {
             </p>
           </div>
         </form>
+        <div>
+          { (this.itemBugs()) ? <BugReportCard data={this.itemBugs()} deleteCard={this.deleteBug} /> : null}
+        </div>
       </div>
     )
   }
