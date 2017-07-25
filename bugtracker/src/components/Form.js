@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 
 export default class Form extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    this.bugDescChange = this.bugDescChange.bind(this);
+    this.bugSevChange = this.bugSevChange.bind(this)
+    this.bugRespChange = this.bugRespChange.bind(this)
+    this.state = {
+      bugDesc: '',
+      bugSev: 'low',
+      bugResp: ''
+    }
   }
 
   render () {
@@ -14,11 +22,11 @@ export default class Form extends Component {
             <label className='label'>
               Description
             </label>
-            <input className='input' type='text' placeholder="Describe a bug..." />
-            <label className="label" for="">Severity</label>
+            <input value={this.state.bugDesc} onChange={this.bugDescChange} className='input' type='text' placeholder="Describe a bug..." />
+            <label className="label" >Severity</label>
             <p className="control">
               <span className="select">
-                <select id="severity" name="severity">
+                <select value={this.state.bugSev} onChange={this.bugSevChange} >
                   <option value="low">Low</option>
                   <option value="medium">Medium</option>
                   <option value="high">High</option>
@@ -26,10 +34,10 @@ export default class Form extends Component {
                 </span>
               </p>
               <label className="label" >Assigned To</label>
-              <input className="input" type="text" placeholder="Enter responsible..."/>
+              <input value={this.state.bugResp} onChange={this.bugRespChange} className="input" type="text" placeholder="Enter responsible..."/>
               <div className="control is-grouped">
                 <p className="control">
-                  <button className="button is-warning">Submit</button>
+                  <button onClick={(event) => this.props.submitBug(event, this.state)} className="button is-warning">Submit</button>
                 </p>
               </div>
           </form>
@@ -38,7 +46,21 @@ export default class Form extends Component {
     )
   }
 
-  submitBug () {
+  bugDescChange(event) {
+    this.setState({
+      bugDesc: event.target.value
+    });
+  }
 
+  bugSevChange(event) {
+    this.setState({
+      bugSev: event.target.value
+    })
+  }
+
+  bugRespChange(event){
+    this.setState({
+      bugResp: event.target.value
+    })
   }
 }
