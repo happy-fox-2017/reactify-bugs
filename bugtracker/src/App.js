@@ -10,7 +10,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      bugs: JSON.parse(localStorage.getItem('bugs'))
+      bugs: JSON.parse(localStorage.getItem('bugs')) || []
     }
   }
 
@@ -21,7 +21,7 @@ class App extends React.Component {
       <div>
         <div className="container">
           <Header />
-          <Form submitBug={this._submitBug.bind(this)} />
+          <Form submitBug={this._updateBug.bind(this)} />
           <hr />
           {bugs}
           <Footer />
@@ -36,13 +36,25 @@ class App extends React.Component {
     return bugs.map((bug) => {
       return (
         <List
-          description={bug.description} severity={bug.severity} status={bug.status} assignedTo={bug.assignedTo} id={bug.id} key={bug.id}/>
+          description={bug.description} severity={bug.severity} status={bug.status} assignedTo={bug.assignedTo} id={bug.id} key={bug.id} deleteBug={this._deleteBug.bind(this)}/>
       );
     })
   }
 
-  _submitBug(bugs) {
+  _updateBug(bugs) {
     this.setState({bugs: bugs})
+  }
+
+  _deleteBug(id) {
+    let bugs = JSON.parse(localStorage.getItem('bugs'))
+
+    let remainingBugs = bugs.filter((item) => {
+      return item.id !== id
+    })
+    localStorage.setItem('bugs', JSON.stringify(remainingBugs))
+
+    let newBug = JSON.parse(localStorage.getItem('bugs'))
+    this._updateBug(newBug)
   }
 
 }

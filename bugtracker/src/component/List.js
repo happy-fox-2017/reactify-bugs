@@ -22,7 +22,7 @@ class List extends React.Component {
             </div>
             <footer className="card-footer">
               <a onClick={() => {setStatusClosed(this.props.id)}} className="is-warning card-footer-item">Close</a>
-              <a onClick={() => {deleteBug(this.props.id)}}className="card-footer-item">Delete</a>
+              <a onClick={() => this.props.deleteBug(this.props.id)} className="card-footer-item">Delete</a>
             </footer>
           </div>
           <br/>
@@ -30,10 +30,6 @@ class List extends React.Component {
       </div>
     );
   }
-}
-
-function fetchBugs () {
-  return JSON.parse(localStorage.getItem('bugs')) || []
 }
 
 function setStatusClosed (id) {
@@ -46,19 +42,6 @@ function setStatusClosed (id) {
   })
 
   localStorage.setItem('bugs', JSON.stringify(updatedBugs))
-  fetchBugs()
 }
-
-function deleteBug (id) {
-  let bugs = JSON.parse(localStorage.getItem('bugs'))
-
-  let remainingBugs = bugs.filter((item) => {
-    return item.id !== id
-  })
-  localStorage.setItem('bugs', JSON.stringify(remainingBugs))
-
-  fetchBugs()
-}
-
 
 export default List;

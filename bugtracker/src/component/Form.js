@@ -3,7 +3,7 @@ import React from 'react';
 var Chance = require('chance');
 var chance = new Chance();
 
-class Form extends React.Component {
+export default class Form extends React.Component {
   render() {
     return (
       <section className="hero is-medium">
@@ -63,5 +63,3 @@ class Form extends React.Component {
     this.props.submitBug(newBug)
   }
 }
-
-export default Form;
