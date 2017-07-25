@@ -1,6 +1,6 @@
 import React from 'react';
 
-class List extends React.Component {
+export default class List extends React.Component {
   render () {
     return (
       <div className="columns">
@@ -31,17 +31,3 @@ class List extends React.Component {
     );
   }
 }
-
-// function setStatusClosed (id) {
-//   let bugs = JSON.parse(localStorage.getItem('bugs'))
-//
-//   let updatedBugs = bugs.map((item) => {
-//     if (item.id === id)
-//       item.status = 'Close'
-//     return item
-//   })
-//
-//   localStorage.setItem('bugs', JSON.stringify(updatedBugs))
-// }
-
-export default List;
