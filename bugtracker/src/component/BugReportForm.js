@@ -25,6 +25,8 @@ class BugReportForm extends React.Component {
       return item.id !== id
     })
     localStorage.setItem('bugs', JSON.stringify(remainingBugs))
+    
+    //ini belum bisa realtime
   }
   
   changeBugSeve (event) {
