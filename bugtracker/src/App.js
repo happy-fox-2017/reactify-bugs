@@ -7,13 +7,21 @@ import Footer from './component/Footer';
 import './App.css';
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      bugs: JSON.parse(localStorage.getItem('bugs'))
+    }
+  }
+
   render() {
-    const bugs = this._getBugs();
+    let bugs = this._getBugs();
+
     return (
       <div>
         <div className="container">
           <Header />
-          <Form />
+          <Form submitBug={this._submitBug.bind(this)} />
           <hr />
           {bugs}
           <Footer />
@@ -23,10 +31,7 @@ class App extends React.Component {
   }
 
   _getBugs() {
-    let bugs = [];
-    if (localStorage.getItem('bugs') !== null) {
-      bugs = JSON.parse(localStorage.getItem('bugs'));
-    }
+    let bugs = this.state.bugs;
 
     return bugs.map((bug) => {
       return (
@@ -35,6 +40,11 @@ class App extends React.Component {
       );
     })
   }
+
+  _submitBug(bugs) {
+    this.setState({bugs: bugs})
+  }
+
 }
 
 export default App;

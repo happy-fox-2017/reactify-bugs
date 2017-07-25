@@ -9,12 +9,12 @@ class Form extends React.Component {
       <section className="hero is-medium">
         <div className="hero-body">
           <h2 className="title">Add New Bug Report:</h2>
-          <form onSubmit={this._saveBug} id="bugInputForm">
-            <label className="label" for="">Description</label>
+          <form onSubmit={this._saveBug.bind(this)} id="bugInputForm">
+            <label className="label">Description</label>
             <p className="control">
               <input className="input" type="text" id="description" placeholder="Describe a bug..."/>
             </p>
-            <label className="label" for="">Severity</label>
+            <label className="label">Severity</label>
             <p className="control">
               <span className="select">
                 <select id="severity" name="severity">
@@ -24,7 +24,7 @@ class Form extends React.Component {
                 </select>
               </span>
             </p>
-            <label className="label" for="">Assigned To</label>
+            <label className="label">Assigned To</label>
             <p className="control">
               <input className="input" type="text" id="assignedTo" placeholder="Enter responsible..."/>
             </p>
@@ -47,7 +47,7 @@ class Form extends React.Component {
       assignedTo: document.getElementById('assignedTo').value,
       status: 'Open'
     }
-    console.log(bug);
+    console.log(bug)
 
     let bugs = []
     if (localStorage.getItem('bugs') !== null) {
@@ -59,6 +59,8 @@ class Form extends React.Component {
     document.getElementById('bugInputForm').reset()
 
     e.preventDefault()
+    let newBug = JSON.parse(localStorage.getItem('bugs'))
+    this.props.submitBug(newBug)
   }
 }
 
