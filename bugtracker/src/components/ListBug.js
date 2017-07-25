@@ -8,7 +8,7 @@ class ListBug extends React.Component {
     }
   }
   getBugs() {
-    if (localStorage.bug !== null) {
+    if (localStorage.bugs !== undefined) {
       JSON.parse(localStorage.bugs).forEach(x => {
         this.state.bug.push(x)
       })
@@ -26,19 +26,25 @@ class ListBug extends React.Component {
     var data = this.state.bug
     console.log('my',data);
 
-    // var buglist = data.map((x) => {
-    //   return x
-    // })
-
+    const style = {
+      form: {
+        textAlign: 'center',
+        marginLeft: '200px',
+        marginRight: '200px'
+      },
+      p: {
+        textAlign: 'center'
+      }
+    }
     return (
       <div>
         {
           data.map((item) => {
             return (
-              <div className="columns" >
-                <div className="column is-medium" id="listBugs">
+              <div className="card" key={item.id} style={style.form}>
+                <div className="column is-medium" id="listBugs" >
                   <div className="card-header">
-                    <p>BugId: {item.id}</p>
+                    <p style={style.p}>BugId: {item.id}</p>
                   </div>
                   <div className="card-conitemnt">
                   <div className="conitemnt">
