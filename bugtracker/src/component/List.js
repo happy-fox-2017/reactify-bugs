@@ -21,7 +21,7 @@ class List extends React.Component {
               <small className="tag is-primary">{this.props.status}</small>
             </div>
             <footer className="card-footer">
-              <a onClick={() => {setStatusClosed(this.props.id)}} className="is-warning card-footer-item">Close</a>
+              <a onClick={() => this.props.setStatusClosed(this.props.id)} className="is-warning card-footer-item">Close</a>
               <a onClick={() => this.props.deleteBug(this.props.id)} className="card-footer-item">Delete</a>
             </footer>
           </div>
@@ -32,16 +32,16 @@ class List extends React.Component {
   }
 }
 
-function setStatusClosed (id) {
-  let bugs = JSON.parse(localStorage.getItem('bugs'))
-
-  let updatedBugs = bugs.map((item) => {
-    if (item.id === id)
-      item.status = 'Close'
-    return item
-  })
-
-  localStorage.setItem('bugs', JSON.stringify(updatedBugs))
-}
+// function setStatusClosed (id) {
+//   let bugs = JSON.parse(localStorage.getItem('bugs'))
+//
+//   let updatedBugs = bugs.map((item) => {
+//     if (item.id === id)
+//       item.status = 'Close'
+//     return item
+//   })
+//
+//   localStorage.setItem('bugs', JSON.stringify(updatedBugs))
+// }
 
 export default List;

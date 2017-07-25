@@ -36,7 +36,7 @@ class App extends React.Component {
     return bugs.map((bug) => {
       return (
         <List
-          description={bug.description} severity={bug.severity} status={bug.status} assignedTo={bug.assignedTo} id={bug.id} key={bug.id} deleteBug={this._deleteBug.bind(this)}/>
+          description={bug.description} severity={bug.severity} status={bug.status} assignedTo={bug.assignedTo} id={bug.id} key={bug.id} deleteBug={this._deleteBug.bind(this)} setStatusClosed={this._setStatusClosed.bind(this)}/>
       );
     })
   }
@@ -52,6 +52,21 @@ class App extends React.Component {
       return item.id !== id
     })
     localStorage.setItem('bugs', JSON.stringify(remainingBugs))
+
+    let newBug = JSON.parse(localStorage.getItem('bugs'))
+    this._updateBug(newBug)
+  }
+
+  _setStatusClosed(id) {
+    let bugs = JSON.parse(localStorage.getItem('bugs'))
+
+    let updatedBugs = bugs.map((item) => {
+      if (item.id === id)
+        item.status = 'Close'
+      return item
+    })
+
+    localStorage.setItem('bugs', JSON.stringify(updatedBugs))
 
     let newBug = JSON.parse(localStorage.getItem('bugs'))
     this._updateBug(newBug)
