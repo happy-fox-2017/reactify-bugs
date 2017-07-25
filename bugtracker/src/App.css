@@ -1,0 +1,8 @@
+.container {
+  max-width: 960px;
+  width: 960px;
+}
+.columns {
+  margin-left: 90px;
+  margin-right: 90px;
+}
