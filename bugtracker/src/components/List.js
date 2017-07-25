@@ -4,8 +4,8 @@ export default class List extends Component {
   render(){
     return (
       <div className='columns'>
-        {this.props.bugs.map((bug) => {
-          return <div className='column is-4' key={bug.BugId}>
+        {this.props.bugs.map((bug, index) => {
+          return <div className='column is-4' key={index}>
             <div className="card">
               <header className="card-header">
                 <p className="card-header-title">
