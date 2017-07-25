@@ -6,6 +6,9 @@ import Title from './components/Title.js'
 import Form from './components/Form.js'
 import Footer from './components/Footer.js'
 import List from './components/List.js'
+import Chance from 'chance'
+
+const chance = new Chance()
 
 class App extends Component {
   constructor(props){
@@ -17,6 +20,7 @@ class App extends Component {
 
   submitBug(event, formParams){
     event.preventDefault()
+    formParams.bugId = chance.guid()
     this.setState({
       bugs: this.state.bugs.concat([formParams])
     })

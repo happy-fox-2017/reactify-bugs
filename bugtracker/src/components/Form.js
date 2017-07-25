@@ -9,7 +9,9 @@ export default class Form extends Component {
     this.state = {
       bugDesc: '',
       bugSev: 'low',
-      bugResp: ''
+      bugResp: '',
+      bugStat: 'open',
+      bugId: ''
     }
   }
 

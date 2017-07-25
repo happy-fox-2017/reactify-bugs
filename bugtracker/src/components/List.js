@@ -1,13 +1,34 @@
 import React, {Component} from 'react'
 
 export default class List extends Component {
-  constructor(props){
-    super(props)
-  }
-  
   render(){
     return (
-      <h1>Ini List</h1>
+      <div className='columns'>
+        {this.props.bugs.map((bug) => {
+          return <div className='column is-4'>
+            <div className="card">
+              <header className="card-header">
+                <p className="card-header-title">
+                BugId: {bug.bugId}
+                </p>
+              </header>
+              <div className="card-content">
+                <div className="content">
+                  {bug.bugDesc}
+                  <span className="tag is-info">{bug.bugSev}</span>
+                  <p>Assigned To: {bug.bugResp}</p>
+                </div>
+                <br/>
+                <small className="tag is-primary">{bug.bugStat}</small>
+              </div>
+              <footer className="card-footer">
+                <a className="is-warning card-footer-item">Close</a>
+                <a className="card-footer-item" >Delete</a>
+              </footer>
+            </div>
+          </div>
+        })}
+      </div>
     )
   }
 }
