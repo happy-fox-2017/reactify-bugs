@@ -1,0 +1,22 @@
+{
+  "name": "reactify-bugs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndrewSenewe/reactify-bugs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndrewSenewe/reactify-bugs/issues"
+  },
+  "homepage": "https://github.com/AndrewSenewe/reactify-bugs#readme",
+  "dependencies": {
+    "chance": "^1.0.10"
+  }
+}
