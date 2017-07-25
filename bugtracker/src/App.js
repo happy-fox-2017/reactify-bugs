@@ -26,13 +26,36 @@ class App extends Component {
     })
   }
 
+  deleteBug(bugId){
+    let remainingBugs = this.state.bugs.filter((bug) => {
+      return bug.bugId !== bugId
+    })
+    this.setState({
+      bugs: remainingBugs
+    })
+  }
+
+  closeBug(bugId){
+    let updatedBugs = this.state.bugs.map((bug) => {
+      if (bug.bugId === bugId) {
+        bug.bugStat = 'close'
+        return bug
+      } else {
+        return bug
+      }
+    })
+    this.setState({
+      bugs: updatedBugs
+    })
+  }
+
   render() {
     return (
       <div className='container'>
         <Title />
         <Footer />
-        <Form submitBug={ this.submitBug.bind(this)}/>
-        <List bugs={this.state.bugs} />
+        <Form submitBug={this.submitBug.bind(this)}/>
+        <List bugs={this.state.bugs} deleteBug={this.deleteBug.bind(this)} closeBug={this.closeBug.bind(this)}/>
       </div>
     );
   }
