@@ -1,5 +1,6 @@
 import React from 'react';
 import BugReportForm from './BugReportForm';
+import BugReportList from './BugReportList';
 
 const BugReportPage = () => {
   return (
@@ -15,7 +16,7 @@ const BugReportPage = () => {
       <hr />
 
       <div className="columns">
-        <div className="column is-medium" id="listBugs"></div>
+        <BugReportList />
       </div>
     </div>
   );
